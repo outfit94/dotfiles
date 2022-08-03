@@ -1,0 +1,150 @@
+{
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "window.openFilesInNewWindow": "off",
+  "window.zoomLevel": -1,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "window.menuBarVisibility": "compact",
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "explorer.confirmDelete": false,
+  "files.insertFinalNewline": true,
+  // GitLens ------------------------------------
+  "gitlens.defaultDateFormat": "YYYY/MM/DD(ddd) hh:mm:ss",
+  "gitlens.defaultTimeFormat": "hh:mm",
+  "gitlens.defaultDateShortFormat": "YY/MM/DD",
+  "gitlens.defaultDateLocale": "ja-JP",
+  // VSCodeVim ----------------------------------
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.visualstar": true,
+  "vim.leader": "<space>",
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  "vim.highlightedyank.duration": 150,
+  "vim.whichwrap": "h,l,<,>,[,]",
+  "vim.handleKeys": {
+      "<C-f>": false
+  },
+  "vim.insertModeKeyBindings": [
+    // j+jでInsertモードを抜ける設定。
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    // ;+;で補完ビューを表示する設定。
+    {
+      "before": [";", ";"],
+      "commands": ["editor.action.triggerSuggest"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    // Leader+lで行末にカーソル移動、Leader+hで行頭にカーソル移動する設定。
+    {
+      "before": ["<leader>", "l"],
+      "after": ["g", "_"]
+    },{
+      "before": ["<leader>", "h"],
+      "after": ["^"]
+    },
+    // Leader+mで対応する括弧に移動する設定。
+    {
+      "before": ["<Leader>", "m"],
+      "after": ["%"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    // ハイライトを消す設定。
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },{
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    },
+    // VSCodeの機能によるundoとredoへと書き換える設定。
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },{
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    // xキーとsキーの一文字削除、一文字修正したときにクリップボードに書き込まれないようにする設定。 ↓↓↓
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },{
+      "before": ["s"],
+      "after": ["\"", "_", "s"]
+    },
+    // jとkのカーソル移動を行が折り返されているときに表示通りに動けるようにする設定。
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },{
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    // 検索で移動するときに選択されている単語を画面中央に持ってくる設定。
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },{
+      "before": ["N"],
+      "after": ["N", "z", "z"]
+    },{
+      "before": ["*"],
+      "after": ["*", "z", "z"]
+    },{
+      "before": ["#"],
+      "after": ["#", "z", "z"]
+    },
+    // Leader+cでその行をコメントアウトする設定。
+    {
+      "before": ["<leader>", "c"],
+      "commands": [{
+        "command": "editor.action.commentLine",
+        "args": []
+      }]
+    },
+    // Leader+wでファイルを保存する設定。
+    {
+      "before": ["<leader>", "w"],
+      "commands": [{
+        "command": "workbench.action.files.save",
+        "args": []
+      }]
+    },
+    // Leader+qでファイルを閉じる設定。
+    {
+      "before": ["<leader>", "q"],
+      "commands": [{
+        "command": "workbench.action.closeActiveEditor",
+        "args": []
+      }]
+    },
+    // Leader+lで行末にカーソル移動、Leader+hで行頭にカーソル移動する設定。
+    {
+      "before": ["<leader>", "l"],
+      "after": ["g", "_"]
+    },{
+      "before": ["<leader>", "h"],
+      "after": ["^"]
+    },
+    // Leader+mで対応する括弧に移動する設定。
+    {
+      "before": ["<leader>", "m"],
+      "after": ["%"]
+    }
+  ]
+}

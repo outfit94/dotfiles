@@ -87,7 +87,7 @@ set title
 set cursorline
 hi clear CursorLine
 " 現在の列を強調表示
-set cursorcolumn
+" set cursorcolumn
 " 矩形選択中は行末にテキストがなくてもカーソルを行末以降に移動
 set virtualedit=block
 " インデントはスマートインデント
@@ -117,7 +117,9 @@ set noundofile
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
 " 他のアプリケーションとコピー＆ペーストできるようになるオプション
-set clipboard=unnamed,autoselect
+if has("clipboard")
+  set clipboard=unnamed,autoselect
+endif
 
 " 素早くウィンドウ移動
 nnoremap <Left> <C-w>h
@@ -127,7 +129,7 @@ nnoremap <Right> <C-w>l
 
 " Backspace キーを使う
 " なおかつレジスタを汚さない
-noremap <BS> "_xh
+" noremap <BS> "_xh
 
 "---------------------------------------------------------------------------
 " netrwに関する設定:
@@ -136,6 +138,10 @@ let g:netrw_banner=1
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_preview=1
+" v でファイルを開くときは右側に開く
+let g:netrw_altv=1
+" o でファイルを開くときは下側に開く
+let g:netrw_alto=1
 
 "---------------------------------------------------------------------------
 "タブページ表示・移動のカスタマイズ:
@@ -241,5 +247,3 @@ endfunction
 
 " Change current directory. [引数なし:ファイルの場所に移動][引数あり:引数の場所に移動][:CD!:移動先の明示]
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
-
-
