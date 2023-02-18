@@ -30,6 +30,10 @@ alias ls="ls -FG"
 alias dc="docker compose"
 alias vi="nvim"
 
+# python3
+alias py='python3'
+alias python='python3'
+
 # git
 alias ga='git add'
 alias gd='git diff'
@@ -55,3 +59,4 @@ fi
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
