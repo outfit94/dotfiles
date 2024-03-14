@@ -5,16 +5,10 @@
   "window.zoomLevel": -1,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "window.menuBarVisibility": "compact",
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "explorer.confirmDelete": false,
   "files.insertFinalNewline": true,
-  // GitLens ------------------------------------
-  "gitlens.defaultDateFormat": "YYYY/MM/DD(ddd) hh:mm:ss",
-  "gitlens.defaultTimeFormat": "hh:mm",
-  "gitlens.defaultDateShortFormat": "YY/MM/DD",
-  "gitlens.defaultDateLocale": "ja-JP",
   // VSCodeVim ----------------------------------
   "vim.easymotion": true,
   "vim.incsearch": true,
