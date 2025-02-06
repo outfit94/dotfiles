@@ -39,6 +39,8 @@ set formatoptions+=mM
 set autoread
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
+" ビジュアルモードでペーストしたときにヤンクしない
+vnoremap p "_dP
 
 "---------------------------------------------------------------------------
 " GUI固有ではない画面表示の設定:
@@ -118,7 +120,7 @@ nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 
 " 他のアプリケーションとコピー＆ペーストできるようになるオプション
 if has("clipboard")
-  set clipboard=unnamed,autoselect
+  set clipboard=unnamed
 endif
 
 " 素早くウィンドウ移動
@@ -129,7 +131,7 @@ nnoremap <Right> <C-w>l
 
 " Backspace キーを使う
 " なおかつレジスタを汚さない
-" noremap <BS> "_xh
+noremap <BS> "_xh
 
 "---------------------------------------------------------------------------
 " netrwに関する設定:
@@ -223,14 +225,6 @@ function! s:GetHighlight(hi)
   return hl
 endfunction
 
-"ctrl+t で新しいタブを開いて編集するファイル名の入力を待つ
-nnoremap <C-T> :tabe<CR>:e<SPACE>
-
-" ctrl+tab, ctrl+shift+tab でタブ切り替え
-
-nnoremap <C-Tab>   gt
-nnoremap <C-S-Tab> gT
-
 "---------------------------------------------------------------------------
 " カレントディレクトリ移動のためのキーマップ:
 command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
@@ -247,3 +241,35 @@ endfunction
 
 " Change current directory. [引数なし:ファイルの場所に移動][引数あり:引数の場所に移動][:CD!:移動先の明示]
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
+
+"---------------------------------------------------------------------------
+" leaderキー関連:
+let mapleader = "\<Space>"
+
+" 「Spaceキー + 各種キー」のようなキー操作マッピング
+inoremap <Leader>jj <Esc>                         " ESCキー
+nnoremap <Leader>w :w<CR>                         " 保存
+nnoremap <Leader>q :q<CR>                         " 終了
+noremap <Leader>a myggVG$                         " 全選択(ノーマル)
+inoremap <Leader>a <Esc>myggVG$                   " 全選択(インサート)
+nnoremap <silent> <Leader>. :new ~/.vimrc<CR>     " .vimrcを開く
+nnoremap <silent> <Leader>, :source ~/.vimrc<CR>  " .vimrcの読み込み
+noremap <Leader><Leader> <C-w>w                   " windowの移動
+map <leader>n :call RenameFile()<cr>              " 編集中ファイルのリネーム
+
+" リネーム関数定義
+function! RenameCurrentFile()
+  let old = expand('%')
+  let new = input('新規ファイル名: ', old , 'file')
+  if new != '' && new != old
+    exec ':saveas ' . new
+    exec ':silent !rm ' . old
+    redraw!
+  endif
+endfunction
+
+" カーソル下の単語を、置換後の文字列の入力を待つ状態にする
+nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
+
+"---------------------------------------------------------------------------
+" プラグイン追加:
