@@ -52,7 +52,7 @@ syntax on
 " すべての数を10進数として扱う
 set nrformats=
 " 行をまたいで移動
-set whichwrap=b,s,h,l,<,>,[,],~
+set whichwrap=b,s,<,>,[,],~
 " バッファスクロール
 set mouse=a
 " エラーメッセージの表示時にビープを鳴らさない
@@ -106,6 +106,8 @@ set listchars=tab:^\ ,trail:~
 hi Comment ctermfg=3
 " 括弧入力時に対応する括弧を表示
 set showmatch
+" beep音/画面点滅を止める
+set visualbell t_vb=
 
 "---------------------------------------------------------------------------
 " ファイル操作に関する設定:
@@ -247,11 +249,9 @@ nnoremap <silent> <Space>cd :<C-u>CD<CR>
 let mapleader = "\<Space>"
 
 " 「Spaceキー + 各種キー」のようなキー操作マッピング
-inoremap <Leader>jj <Esc>                         " ESCキー
 nnoremap <Leader>w :w<CR>                         " 保存
 nnoremap <Leader>q :q<CR>                         " 終了
 noremap <Leader>a myggVG$                         " 全選択(ノーマル)
-inoremap <Leader>a <Esc>myggVG$                   " 全選択(インサート)
 nnoremap <silent> <Leader>. :new ~/.vimrc<CR>     " .vimrcを開く
 nnoremap <silent> <Leader>, :source ~/.vimrc<CR>  " .vimrcの読み込み
 noremap <Leader><Leader> <C-w>w                   " windowの移動
@@ -271,5 +271,9 @@ endfunction
 " カーソル下の単語を、置換後の文字列の入力を待つ状態にする
 nnoremap <Leader>re :%s;\<<C-R><C-W>\>;g<Left><Left>;
 
+" vim[grep]で自動的にQuickFixウィンドウを開く
+autocmd QuickFixCmdPost *grep* cwindow
+
 "---------------------------------------------------------------------------
 " プラグイン追加:
+" 必要に応じて_plugを入れる
