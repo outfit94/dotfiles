@@ -43,6 +43,7 @@ alias gb='git branch'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
+alias lg='lazygit'
 
 # global コマンドの途中でも展開される
 alias -g A="| awk"
