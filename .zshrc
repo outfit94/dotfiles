@@ -27,7 +27,7 @@ path=(
 # UI / Prompt
 # =======================================================
 add_newline() {
-  if [[ -z $PS1_NEWLINE_LOGIN ]]; then [cite: 2]
+  if [[ -z $PS1_NEWLINE_LOGIN ]]; then
     PS1_NEWLINE_LOGIN=true
   else
     printf '\n'
@@ -39,7 +39,7 @@ precmd() { add_newline }
 # Aliases
 # =======================================================
 alias h="history | grep --color=auto"
-alias wk="cd works && ls -FG" # | を && に修正（移動成功時のみls） [cite: 2]
+alias wk="cd works && ls -FG" # | を && に修正（移動成功時のみls）
 
 # ls 系の設定 (eza があれば使用)
 if command -v eza &>/dev/null; then
@@ -86,12 +86,12 @@ _fzf_key_bindings_locations=(
   "$HOME/.fzf/shell/key-bindings.zsh"
 )
 
-if command -v brew &>/dev/null; then [cite: 4]
+if command -v brew &>/dev/null; then
   _fzf_key_bindings_locations=($(brew --prefix)/opt/fzf/shell/key-bindings.zsh "${_fzf_key_bindings_locations[@]}")
 fi
 
 for _fzf_file in "${_fzf_key_bindings_locations[@]}"; do
-  if [[ -f "$_fzf_file" ]]; then [cite: 5]
+  if [[ -f "$_fzf_file" ]]; then
     source "$_fzf_file"
     break
   fi
@@ -103,11 +103,11 @@ unset _fzf_key_bindings_locations _fzf_file
 # =======================================================
 export NVM_DIR="$HOME/.nvm"
 
-if command -v brew &>/dev/null; then [cite: 6]
+if command -v brew &>/dev/null; then
   nvm_prefix="$(brew --prefix)/opt/nvm"
-  [ -s "$nvm_prefix/nvm.sh" ] && . "$nvm_prefix/nvm.sh" [cite: 7]
-  [ -s "$nvm_prefix/etc/bash_completion.d/nvm" ] && . "$nvm_prefix/etc/bash_completion.d/nvm" [cite: 8]
-elif [ -s "$NVM_DIR/nvm.sh" ]; then [cite: 9]
+  [ -s "$nvm_prefix/nvm.sh" ] && . "$nvm_prefix/nvm.sh"
+  [ -s "$nvm_prefix/etc/bash_completion.d/nvm" ] && . "$nvm_prefix/etc/bash_completion.d/nvm"
+elif [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" [cite: 10]
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 fi
