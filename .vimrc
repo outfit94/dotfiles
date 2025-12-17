@@ -17,7 +17,10 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'haya14busa/vim-edgemotion'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'simeji/winresizer'
 call plug#end()
 
 " 2. 検索・表示・編集の基本設定
@@ -155,3 +158,21 @@ function! s:ChangeCurrentDir(directory, bang)
   if a:bang == '' | pwd | endif
 endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
+
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+" edgemotion
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+
+" easymotion
+let g:EasyMotion_do_mapping = 0 "Disable default mappings
+nmap s <Plug>(easymotion-s2)
